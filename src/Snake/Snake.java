@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Snake implements ActionListener, KeyListener {
 
@@ -19,8 +20,9 @@ public class Snake implements ActionListener, KeyListener {
     public Timer timer = new Timer(20, this);
     public ArrayList<Point> snakeParts = new ArrayList<Point>();
     public final int UP = 0, DOWN = 1, LEFT = 2, RIGHT = 3, SCALE = 10;
-    public int ticks = 0, direction = DOWN, score, tailLenght = 10;
-    public boolean over;
+    public int ticks = 0, direction = DOWN, score, tailLenght;
+    public Random random;
+    public boolean over, pause;
     public Point head, cherry;
 
     public Snake() {
@@ -35,6 +37,19 @@ public class Snake implements ActionListener, KeyListener {
         jframe.add(renderPanel = new RenderPanel());
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.addKeyListener(this);
+        Start_Game();
+
+    }
+    public void Start_Game()
+    {
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        over = false;
+        pause = false;
+        score = 0;
+        tailLenght =0;
+        direction = DOWN;
+        random = new Random();
+        snakeParts.clear();
         head = new Point(0, 0);
         cherry = new Point((int) dim.getWidth() / SCALE, (int) dim.getHeight() / SCALE);
 
@@ -54,33 +69,42 @@ public class Snake implements ActionListener, KeyListener {
         renderPanel.repaint();
         ticks++;
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        if (ticks % 10 == 0 && head != null) {
+        if (ticks % 5 == 0 && head != null && over != true && pause != true) {
+            snakeParts.add(new Point(head.x,head.y));
             if (direction == UP)
-                if()
-                head =  new Point(head.x, head.y - 1);
-            else
-                over = true;
+                if(head.y - 1 > -1)
+                    head =  new Point(head.x, head.y - 1);
+                else
+                    over = true;
                 //head = new Point(head.x, head.y - 1);
             if (direction == DOWN)
-                head = new Point(head.x, head.y + 1);
-            else
-                over = true;
+                if(head.y + 1 < dim.height / (SCALE + 4.5)) {
+                    head = new Point(head.x, head.y + 1);
+                }
+                else {
+                    over = true;
+                }
                 //head = new Point(head.x, head.y + 1);
             if (direction == RIGHT)
-                head = new Point(head.x + 1, head.y);
-            else
-                over = true;
+                if(head.x + 1 < dim.width / (SCALE + 7))
+                    head = new Point(head.x + 1, head.y);
+                else
+                    over = true;
                 //head = new Point(head.x + 1, head.y);
             if (direction == LEFT)
-                head = new Point(head.x - 1, head.y);
-            else
-                over = true;
+                if(head.x - 1 > -1)
+                    head = new Point(head.x - 1, head.y);
+                else
+                    over = true;
                 //head = new Point(head.x - 1, head.y);
-            snakeParts.add(new Point(head.x,head.y));
-            for (int i = 0; i < tailLenght; i++ )
-               {
-                  snakeParts.remove(i);
-                }
+            if (snakeParts.size() > tailLenght) {
+                snakeParts.remove(0);
+            }
+
+            //for (int i = 0; i < tailLenght; i++ )
+              // {
+                //  snakeParts.remove(i);
+                //}
 
             if (cherry != null) {
                 if (head.equals(cherry)) {
@@ -108,6 +132,11 @@ public class Snake implements ActionListener, KeyListener {
             direction = UP;
         if (i==KeyEvent.VK_S && direction != UP)
             direction = DOWN;
+        if (i == KeyEvent.VK_SPACE)
+            if(over)
+                Start_Game();
+            else
+                pause = !pause;
     }
 
     @Override
