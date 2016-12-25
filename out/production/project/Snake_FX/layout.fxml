@@ -8,6 +8,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Snake_FX.FXMLSnakeController">
    <top>
+
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Game">
@@ -16,6 +17,14 @@
               <MenuItem mnemonicParsing="false" onAction="#exitAction" text="Exit" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Please Select snake speed">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#Level_1" text="Level 1" />
+                    <MenuItem mnemonicParsing="false" onAction="#Level_2" text="Level 2" />
+                    <MenuItem mnemonicParsing="false" onAction="#Level_3" text="Level 3" />
+                    <MenuItem mnemonicParsing="false" onAction="#Level_4" text="Level 4" />
+                </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>

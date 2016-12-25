@@ -4,25 +4,21 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 import javafx.util.Duration;
+
 
 public class FXMLSnakeController {
     
     private Game game;
+    public Duration duration = Duration.millis(350);
 
     @FXML
     private Canvas canvas;
@@ -38,11 +34,36 @@ public class FXMLSnakeController {
     }
 
     @FXML
-    private void newAction(ActionEvent event) {
-      game = new Game();
-        repaint();
+    private void newAction (ActionEvent event) {
+        game = new Game();
+        game_generation(duration);
     }
 
+    @FXML
+    private void Level_1(ActionEvent event) {
+      game = new Game();
+        Duration duration = Duration.millis(450);
+        game_generation(duration);
+    }
+
+    @FXML
+    private void Level_2(ActionEvent event) {
+        game = new Game();
+        Duration duration = Duration.millis(350);
+        game_generation(duration);
+    }
+    @FXML
+    private void Level_3(ActionEvent event) {
+        game = new Game();
+        Duration duration = Duration.millis(250);
+        game_generation(duration);
+    }
+    @FXML
+    private void Level_4(ActionEvent event) {
+        game = new Game();
+        Duration duration = Duration.millis(150);
+        game_generation(duration);
+    }
     @FXML
     private void keyHandler(KeyEvent e) {
         if (e.getCode() == KeyCode.RIGHT) {
@@ -60,13 +81,12 @@ public class FXMLSnakeController {
     }
     @FXML
 
-    public void repaint() {
-        Duration duration = Duration.millis(250);
+    public void game_generation(Duration duration) {
         timeline = new Timeline(new KeyFrame(duration, (ActionEvent event) -> {
-            text.setText("Your score: "+String.valueOf(game.getScore()));
+            text.setText("Your score: " + String.valueOf(game.getScore()));
             GraphicsContext context = canvas.getGraphicsContext2D();
             if ( !game.isGameOver() ) {
-                context.setFill(Color.AQUA);
+                context.setFill(Color.GREEN);
                 context.fillRect(0, 0, 400, 400);
                 
                 game.snake.getSnake().stream().forEach((part) -> {
