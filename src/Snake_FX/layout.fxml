@@ -29,7 +29,7 @@
       </MenuBar>
    </top>
    <center>
-      <HBox BorderPane.alignment="CENTER"> 
+      <HBox BorderPane.alignment="CENTER">
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>

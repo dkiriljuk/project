@@ -17,7 +17,7 @@
               <MenuItem mnemonicParsing="false" onAction="#exitAction" text="Exit" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Please Select snake speed">
+            <Menu mnemonicParsing="false" text="Snake Speed">
                 <items>
                     <MenuItem mnemonicParsing="false" onAction="#Level_1" text="Level 1" />
                     <MenuItem mnemonicParsing="false" onAction="#Level_2" text="Level 2" />
@@ -29,7 +29,7 @@
       </MenuBar>
    </top>
    <center>
-      <HBox BorderPane.alignment="CENTER"> 
+      <HBox BorderPane.alignment="CENTER">
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>

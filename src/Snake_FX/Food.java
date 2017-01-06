@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
 public class Food extends SnakePart {
 
     private boolean eated;
-    private static Color color=new Color(0, 1, 0 ,1);
+    private static Color color = new Color(0, 1, 0 ,1);
 
     public Food() {
         super();

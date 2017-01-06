@@ -18,10 +18,9 @@ import javafx.util.Duration;
 public class FXMLSnakeController {
     
     private Game game;
-    public Duration duration = Duration.millis(350);
 
     @FXML
-    private Canvas canvas;
+    public Canvas canvas;
     @FXML
     private Text text;
     
@@ -36,32 +35,34 @@ public class FXMLSnakeController {
     @FXML
     private void newAction (ActionEvent event) {
         game = new Game();
+        Duration duration = Duration.millis(350);
         game_generation(duration);
+
     }
 
     @FXML
     private void Level_1(ActionEvent event) {
       game = new Game();
-        Duration duration = Duration.millis(450);
-        game_generation(duration);
+      Duration duration = Duration.millis(350);
+      game_generation(duration);
     }
 
     @FXML
     private void Level_2(ActionEvent event) {
         game = new Game();
-        Duration duration = Duration.millis(350);
+        Duration duration = Duration.millis(250);
         game_generation(duration);
     }
     @FXML
     private void Level_3(ActionEvent event) {
         game = new Game();
-        Duration duration = Duration.millis(250);
+        Duration duration = Duration.millis(150);
         game_generation(duration);
     }
     @FXML
     private void Level_4(ActionEvent event) {
         game = new Game();
-        Duration duration = Duration.millis(150);
+        Duration duration = Duration.millis(50);
         game_generation(duration);
     }
     @FXML
@@ -77,6 +78,12 @@ public class FXMLSnakeController {
         }
         else if(e.getCode() == KeyCode.DOWN) {
             game.snake.setDirection(3);
+        }
+        else if(e.getCode() == KeyCode.ESCAPE) {
+            timeline.pause();
+        }
+        else if(e.getCode() == KeyCode.ENTER) {
+            timeline.play();
         }
     }
     @FXML
