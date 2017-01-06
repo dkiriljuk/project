@@ -2,7 +2,7 @@
 # Ussimäng JavaFX
 * See project kirjutatud kasutades javaFX-i.
 # Mängu klahvid
-Ussimäng, mida saab mängida kahekesi.
+
 Mängija klahvid:
 * Vasakule - s
 * Paremale - d
